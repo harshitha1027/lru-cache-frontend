@@ -1,38 +1,487 @@
+/* ---------- GLOBAL ---------- */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #dbeafe, #fce7f3);
+}
+
+
 .App {
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+/* ---------- CARD LAYOUT ---------- */
+.card {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 25px;
+  margin: 25px auto;
+  width: 80%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* ---------- HEADINGS ---------- */
+h1 {
+  color: #2c3e50;
+  margin-top: 20px;
+}
+
+.section-title {
+  color: #34495e;
+  margin-bottom: 15px;
+}
+
+/* ---------- CACHE VISUALIZATION ---------- */
+.cache-visualizer {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.cache-row {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+/* Cache block */
+.cache-cell {
+  width: 55px;
+  height: 55px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 8px;
+  font-weight: bold;
+  font-size: 18px;
+  color: #fff;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+/* Hover effect */
+.cache-cell:hover {
+  transform: scale(1.1);
+}
+
+/* Hit & Miss colors */
+.hit {
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+}
+
+.miss {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+/* Animation on step change */
+.animate {
+  animation: popIn 0.4s ease;
+}
+
+/* ---------- HIT / MISS TEXT ---------- */
+.hit-text {
+  color: #27ae60;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.miss-text {
+  color: #c0392b;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* ---------- BUTTONS ---------- */
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- ANIMATIONS ---------- */
+@keyframes popIn {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- RESULT SUMMARY ---------- */
+.summary-row {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.summary-box {
+  width: 180px;
+  padding: 20px;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  animation: popIn 0.4s ease;
+}
+
+.summary-box h3 {
+  font-size: 28px;
+  margin: 0;
+}
+
+.summary-box p {
+  margin: 5px 0 0;
+  font-size: 14px;
+}
+
+.hit-box {
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+}
+
+.miss-box {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.ratio-box {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+/* Progress bar */
+.progress-container {
+  margin-top: 25px;
+  height: 18px;
+  width: 100%;
+  background: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-hit {
+  height: 100%;
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  transition: width 0.5s ease;
+}
+
+
+/* ---------- SUMMARY CARD ---------- */
+.summary-card {
+  background: linear-gradient(135deg, #f8fafc, #eef2ff);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.summary-note {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* ---------- AUTO EXPLANATION ---------- */
+.explanation-box {
+  margin-top: 25px;
+  padding: 15px 20px;
+  background: #eef2ff;
+  border-left: 6px solid #4f46e5;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #333;
+  animation: fadeIn 0.5s ease;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* ---------- EXAMPLE BUTTONS ---------- */
+.example-buttons {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 12px;
+  margin: 15px 0;
+  flex-wrap: wrap;
+}
+
+.example-buttons button {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  font-size: 14px;
+}
+
+/* ---------- DARK MODE ---------- */
+.dark {
+  background-color: #0f172a;
+  color: #e5e7eb;
+}
+
+.dark .card {
+  background: #1e293b;
+  color: #e5e7eb;
+}
+
+.top-bar {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.dark .app-title {
+  color: #f8fafc; /* bright white */
+  opacity: 1;
+}
+
+.app-title {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+
+.toggle-btn {
+  position: absolute;
+  right: 20px;
+  background: transparent;
+  color: inherit;
+  border: 1px solid #94a3b8;
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+
+/* ---------- THEORY PANEL ---------- */
+.theory-panel {
+  max-width: 800px;
+  margin: 30px auto;
+}
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.compare-table th,
+.compare-table td {
+  border: 1px solid #94a3b8;
+  padding: 10px;
+  text-align: center;
+}
+
+.compare-table th {
+  background-color: #6366f1;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.dark .compare-table th {
+  background-color: #4f46e5;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.visualization-card {
+  margin: 30px auto;
+  padding: 20px;
+  width: 90%;
+  border-radius: 12px;
+  background: var(--card-bg, #f9fafb);
+}
+
+.dark .visualization-card {
+  background: #1e293b;
+}
+
+.status-text {
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.lru-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.lru-table th,
+.lru-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.dark .lru-table th,
+.dark .lru-table td {
+  border-color: #475569;
+}
+
+.lru-table th {
+  background-color: #e5e7eb;
+}
+
+.dark .lru-table th {
+  background-color: #334155;
+}
+
+.hit-text {
+  color: green;
+  font-weight: bold;
+}
+
+.miss-text {
+  color: red;
+  font-weight: bold;
+}
+.visualization-card {
+  margin: 30px auto;
+  padding: 20px;
+  width: 92%;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.dark .visualization-card {
+  background: #1e293b;
+}
+
+.status-text {
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+/* TABLE */
+.lru-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.lru-table th,
+.lru-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.dark .lru-table th,
+.dark .lru-table td {
+  border-color: #475569;
+}
+
+.lru-table th {
+  background-color: #e5e7eb;
+}
+
+.dark .lru-table th {
+  background-color: #334155;
+}
+
+/* Highlight current animated step */
+.active-row {
+  background-color: #dbeafe;
+}
+
+.dark .active-row {
+  background-color: #2563eb33;
+}
+
+.hit-text {
+  color: green;
+  font-weight: bold;
+}
+
+.miss-text {
+  color: red;
+  font-weight: bold;
+}
+
+.speed-control {
+  margin: 15px 0;
+  text-align: center;
+}
+
+.speed-control input {
+  width: 60%;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.dark .speed-control {
+  color: #f1f5f9;
+}
+/* Simulation Summary Card */
+.summary-card {
+  background: #1e293b;        /* dark slate */
+  border-radius: 18px;
+  padding: 30px;
+  margin-top: 30px;
+}
+
+/* 🔥 FIX TITLE VISIBILITY */
+.section-title {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 700;
+  color: #f8fafc;             /* LIGHT TEXT */
+  margin-bottom: 25px;
+}
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.summary-box {
+  flex: 1;
+  min-width: 180px;
+  padding: 20px;
+  border-radius: 14px;
+  text-align: center;
+  color: white;
+}
+
+.hit-box {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.miss-box {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.ratio-box {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+.explanation-box {
+  background: #f1f5f9;
+  color: #1e293b;
+  padding: 16px 20px;
+  border-left: 6px solid #6366f1;
+  border-radius: 12px;
+  margin-top: 25px;
+  font-size: 15px;
 }
